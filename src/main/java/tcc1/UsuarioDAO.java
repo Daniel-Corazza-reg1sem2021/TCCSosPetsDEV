@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="usuario")
-
 public class UsuarioDAO {
 	
 	@Id
