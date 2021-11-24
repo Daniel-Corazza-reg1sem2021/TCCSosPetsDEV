@@ -15,14 +15,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="usuario")
+@Table(name = "usuario")
 public class UsuarioDAO {
-	
+
 	@Id
 	private int id_usuario;
-	
+
 	@Column
 	private String nome;
-	
-	
+
 }

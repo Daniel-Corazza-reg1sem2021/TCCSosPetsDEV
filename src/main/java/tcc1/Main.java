@@ -1,11 +1,16 @@
 package tcc1;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import repositorio.UsuarioRepositorio;
+
+
 public class Main {
-	
+
 	private static final EntityManagerFactory emFactoryObj;
 	private static final String PERSISTENCE_UNIT_NAME = "sos_pets";
 
@@ -20,16 +25,17 @@ public class Main {
 
 	public static void main(String[] args) {
 		EntityManager entityMgr = getEntityManager();
-	try {	
-		UsuarioDAO teste = new UsuarioDAO(1, "Joao");
-		entityMgr.getTransaction().begin();
-		entityMgr.persist(teste);
-		entityMgr.flush();
-		entityMgr.getTransaction().commit();
-	}catch (Exception ex) {
-		entityMgr.getTransaction().rollback();
+		/*
+		 * try { PetsDAO testePet = new PetsDAO(1, "Cachorro salsicha", "P");
+		 * entityMgr.getTransaction().begin(); entityMgr.persist(testePet);
+		 * entityMgr.flush(); entityMgr.getTransaction().commit(); }catch (Exception ex)
+		 * { entityMgr.getTransaction().rollback(); }
+		 */
+
+		
+	
+
+		
+
 	}
 }
-}
-
-
