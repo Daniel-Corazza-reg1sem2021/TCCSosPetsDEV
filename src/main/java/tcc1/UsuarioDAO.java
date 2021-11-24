@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class UsuarioDAO {
 
 	@Id
-	private int id_usuario;
+	private Long id_usuario;
 
 	@Column
 	private String nome;

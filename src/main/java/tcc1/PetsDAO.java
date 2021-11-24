@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class PetsDAO {
 
 	@Id
-	private int id_pet;
+	private Long id_pet;
 
 	@Column
 	private String descricao;

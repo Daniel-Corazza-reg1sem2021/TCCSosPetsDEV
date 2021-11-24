@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 
 import tcc1.PetsDAO;
 
-public class PetsRepositorio extends Repositorio<PetsDAO, Integer> {
+public class PetsRepositorio extends Repositorio<PetsDAO, Long> {
 
 	public PetsRepositorio(EntityManager em) {
 		super(em);

@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 
 import tcc1.UsuarioDAO;
 
-public class UsuarioRepositorio extends Repositorio<UsuarioDAO, Integer> {
+public class UsuarioRepositorio extends Repositorio<UsuarioDAO, Long> {
 
 	public UsuarioRepositorio(EntityManager em) {
 		super(em);

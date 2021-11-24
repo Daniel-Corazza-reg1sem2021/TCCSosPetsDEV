@@ -1,6 +1,7 @@
 package repositorio;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 
@@ -19,7 +20,11 @@ public abstract class Repositorio<T, U> {
 	}
 
 	public List<T> findAll() {
-		return this.em.createQuery("Select u from " + getGeneric().getSimpleName() + "u", getGeneric()).getResultList();
+		return this.em.createQuery("Select u from " + getGeneric().getSimpleName() + " u ", getGeneric()).getResultList();
+	}
+
+	List<T> genericSearch(Map<String, Object> param) {
+		return null;
 	}
 
 	public void save(T u) {
