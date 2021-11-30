@@ -42,7 +42,7 @@ public class AuthService implements IAuthService{
 		
 		try {
 			URI uri = URI.create(
-					"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[api_key=AIzaSyCVnSbNZewtr1YMIFFSu4r4K7sVkJxVuEc]"
+					"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCVnSbNZewtr1YMIFFSu4r4K7sVkJxVuEc"
 					);
 			UserRecord record = rt.postForEntity(uri, request, UserRecord.class).getBody();
 			String userIdTest = record.getUid();
