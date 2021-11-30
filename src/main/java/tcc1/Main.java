@@ -30,12 +30,12 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		EntityManager entityMgr = getEntityManager();
+		/*EntityManager entityMgr = getEntityManager();
 
 		  /*try { PetsDAO testePet = new PetsDAO(1, "Cachorro salsicha", "P");
 		  entityMgr.getTransaction().begin(); entityMgr.persist(testePet);
 		  entityMgr.flush(); entityMgr.getTransaction().commit(); }catch (Exception ex)
-		  { entityMgr.getTransaction().rollback(); }*/
+		  { entityMgr.getTransaction().rollback(); }
 		 
 
 		Map<String, String> params = new HashMap<String, String>();
@@ -58,7 +58,9 @@ public class Main {
 		
 		UsuarioRepositorio usuario = new UsuarioRepositorio(entityMgr);
 		List<UsuarioDAO> usuarios = usuario.findAll();
-		System.out.println(usuarios);
+		System.out.println(usuarios);*/
+		
+		
 
 	}
 }

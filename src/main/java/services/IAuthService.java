@@ -9,5 +9,4 @@ public interface IAuthService {
 	
 	void logout (String token, Set<String> loggedUser);
 	
-	
 }
