@@ -35,13 +35,18 @@ public class AuthService implements IAuthService{
 	public boolean login(String email, String password, Set<String> loggedUser) {
 		// TODO Auto-generated method stub
 		RestTemplate rt = new RestTemplate();
-		UserRecord record = rt.postForEntity(null, null, UserRecord.class).getBody();
+		UserRecord.CreateRequest request = new UserRecord.CreateRequest();
+		request.setEmail(email);
+		request.setPassword(password);
+		
 		
 		try {
 			URI uri = URI.create(
 					"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[api_key=AIzaSyCVnSbNZewtr1YMIFFSu4r4K7sVkJxVuEc]"
 					);
-			ResponseEntity<String> conteudoGoogle = rt.exchange(uri, HttpMethod.GET, null, String.class);
+			UserRecord record = rt.postForEntity(uri, request, UserRecord.class).getBody();
+			String userIdTest = record.getUid();
+			loggedUser.add(userIdTest);
 			return true;
 		}
 		catch(Exception e) {
@@ -52,7 +57,7 @@ public class AuthService implements IAuthService{
 	@Override
 	public void logout(String token, Set<String> loggedUser) {
 		// TODO Auto-generated method stub
-		
+		loggedUser.remove(token);
 	}
 
 }
