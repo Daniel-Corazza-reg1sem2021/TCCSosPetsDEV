@@ -1,58 +1,54 @@
 package services;
 
-import java.net.URI;
+
+
 import java.util.Set;
 
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.client.RestTemplate;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.UserRecord;
+
+import fireBase.FBRequest;
+import fireBase.FBResponse;
 
 public class AuthService implements IAuthService{
 
 	@Override
 	public boolean createUsers(String email, String password) {
 		// TODO Auto-generated method stub
-		FirebaseAuth auth = FirebaseAuth.getInstance();
-		UserRecord.CreateRequest request = new UserRecord.CreateRequest();
-		request.setEmail(email);
-		request.setPassword(password);
-		
+		String url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCVnSbNZewtr1YMIFFSu4r4K7sVkJxVuEc";
 		try {
-			auth.createUser(request);
+			RestTemplate rt = new RestTemplate();
+			FBRequest request = new FBRequest(email, password, false);
+			rt.postForEntity(url, request, FBResponse.class);
+			
 			return true;
-		}
-		catch(Exception e) {
+		} catch(Exception e){
+			e.printStackTrace();
 			return false;
 		}
-		
 		
 	}
 
 	@Override
 	public boolean login(String email, String password, Set<String> loggedUser) {
 		// TODO Auto-generated method stub
-		RestTemplate rt = new RestTemplate();
-		UserRecord.CreateRequest request = new UserRecord.CreateRequest();
-		request.setEmail(email);
-		request.setPassword(password);
-		
-		
+		String url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCVnSbNZewtr1YMIFFSu4r4K7sVkJxVuEc";
 		try {
-			URI uri = URI.create(
-					"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCVnSbNZewtr1YMIFFSu4r4K7sVkJxVuEc"
-					);
-			UserRecord record = rt.postForEntity(uri, request, UserRecord.class).getBody();
-			String userIdTest = record.getUid();
-			loggedUser.add(userIdTest);
+			RestTemplate rt = new RestTemplate();
+			FBRequest request = new FBRequest(email, password, true);
+			FBResponse response = rt.postForEntity(url, request, FBResponse.class).getBody();
+			String userId = FirebaseAuth.getInstance().verifyIdToken(response.getIdToken()).getUid();
+			
+			
 			return true;
-		}
-		catch(Exception e) {
+		}catch(Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
+	
 
 	@Override
 	public void logout(String token, Set<String> loggedUser) {
